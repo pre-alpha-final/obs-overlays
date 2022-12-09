@@ -6,19 +6,37 @@
     text-shadow: 2px 2px #f0f0f0
 }
 
-.black-shadow {
-    text-shadow: 2px 2px #303030
-}
-
 .dark-shadow {
     color: aliceblue;
     text-shadow: 2px 2px 4px #808080;
 }
 
-.light-shadow {
-    text-shadow: 3px 3px 8px #303030;
+.red1-shadow {
+    color: #FF0000;
+    text-shadow: 0 0 3px #FF0000;
 }
 
-.heavy-shadow {
-    text-shadow: 4px 4px 8px #000000;
+.red2-shadow {
+    color: #FF0000;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #FF0000;
+}
+
+.green1-shadow {
+    color: #00FF00;
+    text-shadow: 0 0 3px #00FF00;
+}
+
+.green2-shadow {
+    color: #00FF00;
+    text-shadow: 0 0 3px #00FF00, 0 0 5px #00FF00;
+}
+
+.blue1-shadow {
+    color: #0000FF;
+    text-shadow: 0 0 3px #0000FF;
+}
+
+.blue2-shadow {
+    color: #0000FF;
+    text-shadow: 0 0 3px #0000FF, 0 0 5px #0000FF;
 }
