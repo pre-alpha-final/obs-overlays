@@ -1,35 +1,39 @@
 ﻿@page "/timestamp"
 @inject NavigationManager NavigationManager
+@inject IJSRuntime JsRuntime
 
 <PageTitle>OBS Browser Source Overlays</PageTitle>
 
-<div class="ms-3 mt-3 mb-5">
-    <h1>OBS Browser Source Overlays</h1>
-</div>
-
-<div class="ms-5 container ms-auto">
-    <div class="row">
-        <div class="col-2 d-flex justify-content-center">
-            <h6>Timestamp</h6>
-        </div>
-        <div class="col-2 d-flex justify-content-center">
-            <h6>Placeholder</h6>
-        </div>
-        <div class="col-2 d-flex justify-content-center">
-            <h6>Placeholder</h6>
-        </div>
-        <div class="col-2 d-flex justify-content-center">
-            <h6>Placeholder</h6>
-        </div>
-        <div class="col-2 d-flex justify-content-center">
-            <h6>Placeholder</h6>
-        </div>
-        <div class="col-2 d-flex justify-content-center">
-            <h6>Placeholder</h6>
-        </div>
+@if (IsInsideObs == false)
+{
+    <div class="ms-3 mt-3 mb-5">
+        <h1>OBS Browser Source Overlays</h1>
     </div>
-    <hr class="my-0" />
-</div>
+
+    <div class="ms-5 container ms-auto">
+        <div class="row">
+            <div class="col-2 d-flex justify-content-center">
+                <h6>Timestamp</h6>
+            </div>
+            <div class="col-2 d-flex justify-content-center">
+                <h6>Placeholder</h6>
+            </div>
+            <div class="col-2 d-flex justify-content-center">
+                <h6>Placeholder</h6>
+            </div>
+            <div class="col-2 d-flex justify-content-center">
+                <h6>Placeholder</h6>
+            </div>
+            <div class="col-2 d-flex justify-content-center">
+                <h6>Placeholder</h6>
+            </div>
+            <div class="col-2 d-flex justify-content-center">
+                <h6>Placeholder</h6>
+            </div>
+        </div>
+        <hr class="my-0" />
+    </div>
+}
 
 <div class="p-4 h-100">
     <div class="d-flex flex-column flex-grow-1 h-100 justify-content-center">
@@ -116,6 +120,7 @@
         Task.Run(Refresh);
     }
 
+    public bool IsInsideObs { get; set; }
     public string Title { get; set; } = "Some title - ";
     public string Hours { get; set; } = "1";
     public string Minutes { get; set; } = "2";
@@ -136,6 +141,17 @@
         "blue1-shadow",
         "blue2-shadow",
     };
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            var userAgent = await JsRuntime.InvokeAsync<string>("getUserAgent");
+            IsInsideObs = userAgent.Contains("OBS/");
+        }
+    }
 
     public async Task OnUpdate()
     {
