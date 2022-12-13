@@ -1,4 +1,10 @@
-﻿.white-shadow {
+﻿.config {
+    background: #FFFFFE;
+    padding: 20px;
+    margin: -20px;
+}
+
+.white-shadow {
     text-shadow: 2px 2px #f0f0f0
 }
 
