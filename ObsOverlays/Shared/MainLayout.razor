@@ -1,5 +1,54 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime JsRuntime
+
+<PageTitle>OBS Browser Source Overlays</PageTitle>
 
 <div>
+    @if (IsInsideObs == false)
+    {
+        <div class="ms-3 mt-3 mb-5">
+            <h1>OBS Browser Source Overlays</h1>
+        </div>
+
+        <div class="ms-5 mb-2 container ms-auto">
+            <div class="row">
+                <div class="col-2 d-flex justify-content-center">
+                    <a class="plain-link" href="/timestamp"><h6>Timestamp</h6></a>
+                </div>
+                <div class="col-2 d-flex justify-content-center">
+                    <a class="plain-link" href="/placeholder"><h6>Placeholder</h6></a>
+                </div>
+                <div class="col-2 d-flex justify-content-center">
+                    <a class="plain-link" href="/placeholder"><h6>Placeholder</h6></a>
+                </div>
+                <div class="col-2 d-flex justify-content-center">
+                    <a class="plain-link" href="/placeholder"><h6>Placeholder</h6></a>
+                </div>
+                <div class="col-2 d-flex justify-content-center">
+                    <a class="plain-link" href="/placeholder"><h6>Placeholder</h6></a>
+                </div>
+                <div class="col-2 d-flex justify-content-center">
+                    <a class="plain-link" href="/placeholder"><h6>Placeholder</h6></a>
+                </div>
+            </div>
+            <hr class="my-0" />
+        </div>
+    }
     @Body
 </div>
+
+@code {
+    public bool IsInsideObs { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+
+        if (firstRender)
+        {
+            var userAgent = await JsRuntime.InvokeAsync<string>("getUserAgent");
+            IsInsideObs = userAgent.Contains("OBS/");
+            StateHasChanged();
+        }
+    }
+}

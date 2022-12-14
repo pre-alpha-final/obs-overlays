@@ -2,6 +2,7 @@
     background: #FFFFFE;
     padding: 20px;
     margin: -20px;
+    min-width: 450px;
 }
 
 .white-shadow {
