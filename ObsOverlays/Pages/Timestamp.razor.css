@@ -5,42 +5,27 @@
 }
 
 .white-shadow {
-    text-shadow: 2px 2px #f0f0f0
+    text-shadow: 2px 2px #f0f0f0, 2px 2px #f0f0f0, 2px 2px #f0f0f0;
 }
 
 .dark-shadow {
     color: aliceblue;
-    text-shadow: 2px 2px 4px #808080;
+    text-shadow: 2px 2px 4px #808080, 2px 2px 4px #808080, 2px 2px 4px #808080;
 }
 
 .red1-shadow {
     color: #FF0000;
-    text-shadow: 0 0 3px #FF0000;
-}
-
-.red2-shadow {
-    color: #FF0000;
-    text-shadow: 0 0 3px #FF0000, 0 0 5px #FF0000;
+    text-shadow: 0 0 3px #FF0000, 2px 2px #f0f0f0;
 }
 
 .green1-shadow {
     color: #00FF00;
-    text-shadow: 0 0 3px #00FF00;
-}
-
-.green2-shadow {
-    color: #00FF00;
-    text-shadow: 0 0 3px #00FF00, 0 0 5px #00FF00;
+    text-shadow: 0 0 3px #00FF00, 2px 2px #f0f0f0;
 }
 
 .blue1-shadow {
     color: #0000FF;
-    text-shadow: 0 0 3px #0000FF;
-}
-
-.blue2-shadow {
-    color: #0000FF;
-    text-shadow: 0 0 3px #0000FF, 0 0 5px #0000FF;
+    text-shadow: 0 0 3px #0000FF, 2px 2px #f0f0f0;
 }
 
 .font1 {
