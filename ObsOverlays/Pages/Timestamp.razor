@@ -30,6 +30,9 @@
             <div class="mx-1 mt-3 pt-1 w-100">
                 <button @onclick="OnUpdate" type="button" class="btn btn-success w-100">Update</button>
             </div>
+            <div class="mx-1 mt-1 pt-1 w-100">
+                <button @onclick="OnPauseResume" type="button" class="btn btn-success w-100">Pause/Resume</button>
+            </div>
             <div class="container mt-3">
                 <div class="row">
                     <div class="col-1" />
@@ -80,6 +83,7 @@
 
 @code {
     private DateTimeOffset? _startTimestamp = DateTimeOffset.UtcNow;
+    private DateTimeOffset? _pauseTimestamp = null;
 
     public Timestamp()
     {
@@ -110,6 +114,21 @@
         int.TryParse(Minutes, out var minutes);
         int.TryParse(Seconds, out var seconds);
         _startTimestamp = DateTimeOffset.UtcNow.AddHours(-hours).AddMinutes(-minutes).AddSeconds(-seconds);
+        _pauseTimestamp = null;
+    }
+
+    public async Task OnPauseResume()
+    {
+        var pauseTimestampLocal = _pauseTimestamp;
+        if (pauseTimestampLocal == null)
+        {
+            _pauseTimestamp = DateTimeOffset.UtcNow;
+        }
+        else
+        {
+            _startTimestamp += DateTimeOffset.UtcNow - pauseTimestampLocal;
+            _pauseTimestamp = null;
+        }
     }
 
     private async Task Refresh()
@@ -128,6 +147,10 @@
                 _ => "col-4",
             };
 
+            if (_pauseTimestamp != null)
+            {
+                continue;
+            }
             var difference = (DateTimeOffset.UtcNow - _startTimestamp).Value;
             Text = $"{Title.Replace(" ", "&nbsp;")}{(((int)difference.TotalHours).ToString("D2"))} : {difference.Minutes:D2} : {difference.Seconds:D2}";
             StateHasChanged();
